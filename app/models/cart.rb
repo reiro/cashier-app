@@ -3,6 +3,8 @@ class Cart < ApplicationRecord
   has_many :products, through: :line_items
 
   def total_price
-    0.0
+    line_items.sum do |line_item|
+      line_item.final_line_price.round(2)
+    end
   end
 end
