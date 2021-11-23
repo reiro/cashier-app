@@ -17,7 +17,7 @@ module LineItems
     # if in future there will be few discounts applied to a single product, 
     # discounts will iteractively apply according to a priority
     def apply_discounts
-      discounts.order(priority: :asc).map do |discount|
+      discounts.map do |discount|
         @state = discount.service_class_name.new(state, discount.quantity_condition, discount.value).call
       end
     end
