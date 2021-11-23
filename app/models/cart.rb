@@ -6,6 +6,6 @@ class Cart < ApplicationRecord
   def total_price
     line_items.includes(product: [:discounts]).sum do |line_item|
       line_item.final_line_price.round(2)
-    end
+    end.to_f
   end
 end
