@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :product do
+    product_code { "PR_#{rand(100)}" }
+    name { "Product #{rand(100)}" }
+    price { (rand * 10).ceil(2) }
+
     trait :gr1 do
       product_code { 'GR1' }
       name { 'Green Tea' }

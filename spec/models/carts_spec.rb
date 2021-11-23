@@ -5,8 +5,22 @@ RSpec.describe Cart, type: :model do
   let(:cart_2) { create :cart, :with_products_2 }
   let(:cart_3) { create :cart, :with_products_3 }
   let(:cart_4) { create :cart, :with_products_4 }
+  let(:empty_cart) { create(:cart) }
 
-  describe '.total_price' do
+  describe '#total_price' do
+    context 'from empty cart' do
+      let(:cart) { empty_cart }
+      let(:line_items) { create_list(:line_item, 2) }
+
+      before do
+        line_items.each { |li| cart.line_items << li }
+      end
+
+      it 'returns total_price of all line_items' do
+        expect(cart.total_price).to eq(line_items.sum(&:final_line_price))
+      end
+    end
+
     context 'GR1,SR1,GR1,GR1,CF1' do
       let(:cart) { cart_1 }
 
