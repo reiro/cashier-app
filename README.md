@@ -40,14 +40,14 @@ Cart.all[1].total_price
 
 ```ruby
 # Basket: SR1,SR1,GR1,SR1
-Cart.all[0].total_price
+Cart.all[2].total_price
 # returns 16.61
 
 ```
 
 ```ruby
 # Basket: GR1,CF1,SR1,CF1,CF1
-Cart.all[0].total_price
+Cart.all[3].total_price
 # returns 30.57
 
 ```
